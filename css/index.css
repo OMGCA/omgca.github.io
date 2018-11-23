@@ -41,10 +41,10 @@ body {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   font-weight: 100;
   font-size: 24px;
-  color: #444;
+  color: rgb(92, 116, 165);
   min-width: 760px;
   display: flex;
   -webkit-display: flex;
@@ -79,22 +79,12 @@ span.listIco {
   text-align: center;
 }
 
-/*
-span.notoSans {
-    font-family: "Noto Sans Japanese", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
-    font-weight: 100;
-    em {
-        font-weight: 500;
-        font-style: normal;
-    }
-}
-*/
 #about {
   text-align: left;
-  background-color: #fff;
-  padding: 10px;
-  width: 500px;
-  height: 300px;
+  background-color: rgb(248, 247, 247);
+  padding: 12px;
+  width: 575px;
+  height: 350px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px;
@@ -126,7 +116,7 @@ span.notoSans {
   margin: auto;
   width: 140px;
   height: auto;
-  background-color: rgb(129, 170, 224);
+  background-color: rgb(92, 116, 165);
   padding: 8px;
   -moz-border-radius: 120px;
   -webkit-border-radius: 120px;
@@ -137,19 +127,19 @@ span.notoSans {
 }
 #about #me {
   position: absolute;
-  top: 60px;
+  top: 53px;
   left: 150px;
   margin: 0 40px;
-  height: 140px;
-  width: 300px;
-  border-top: 1px solid #d4d4d4;
-  border-bottom: 1px solid #d4d4d4;
+  height: 150px;
+  width: 375px;
+  border-top: 3px solid #d4d4d4;
+  border-bottom: 3px solid #d4d4d4;
 }
 #about #me .description {
   position: absolute;
-  top: -17px;
-  left: -50px;
-  width: 400px;
+  top: -13px;
+  left: -35px;
+  width: 375px;
   font-size: 18px;
   text-align: left;
   line-height: 28px;
@@ -202,7 +192,7 @@ span.notoSans {
 }
 #about .menu a span:after {
   position: absolute;
-  top: -24px;
+  top: -20px;
   left: 42px;
   height: 0;
   width: 0;
@@ -211,26 +201,29 @@ span.notoSans {
   content: "";
 }
 #about .menu a:hover span {
-  opacity: 1;
+  opacity: 0.8;
   top: 55px;
+  font-size: 20px;
+  text-align: center;
+  width: 60px;
 }
 #about .menu a:before {
   font-family: 'foundation-icons';
   font-style: normal;
   font-weight: normal;
   display: inline-block;
-  width: 30px;
+  width: 25px;
   padding: 0;
   margin: 0;
-  color: #b0b0b0;
+  color: #3a3a3a;
   font-size: 35px;
   text-align: center;
-  line-height: 1;
+  line-height: 1.5;
   float: left;
   transition: .8s;
 }
 #about .menu a:hover:before {
-  color: #d4d4d4;
+  color: #6fb6f0;
 }
 #about .menu .twitter:before {
   content: "\f1e4";
@@ -246,4 +239,7 @@ span.notoSans {
 }
 #about .menu .github:before{
   content: "\f1c9";
+}
+#about .menu .bilibili:before{
+  content: "\f20e";
 }
