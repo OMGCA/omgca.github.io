@@ -234,10 +234,10 @@ span.notoSans {
 #about .menu .twitter:before {
   content: "\f1e4";
 }
-#about .menu .dribbble:before {
+#about .menu .weibo:before {
   content: "\f1c0";
 }
-#about .menu .github:before {
+#about .menu .steam:before {
   content: "\f1c9";
 }
 #about .menu .tumblr:before {
