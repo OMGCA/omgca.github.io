@@ -122,15 +122,15 @@ span.notoSans {
 #about #ico {
   position: absolute;
   top: 50px;
-  left: 32px;
+  left: 15px;
   margin: auto;
   width: 140px;
   height: auto;
-  background-color: #fff;
+  background-color: rgb(129, 170, 224);
   padding: 8px;
   -moz-border-radius: 120px;
   -webkit-border-radius: 120px;
-  border-radius: 120px;
+  border-radius: 150px;
   -moz-box-shadow: 0 0 4px 0 #aaa;
   -webkit-box-shadow: 0 0 4px 0 #aaa;
   box-shadow: 0 0 4px 0 #aaa;
@@ -138,19 +138,19 @@ span.notoSans {
 #about #me {
   position: absolute;
   top: 60px;
-  left: 160px;
+  left: 150px;
   margin: 0 40px;
   height: 140px;
-  width: 280px;
+  width: 300px;
   border-top: 1px solid #d4d4d4;
   border-bottom: 1px solid #d4d4d4;
 }
 #about #me .description {
   position: absolute;
-  top: -13px;
-  left: -40px;
-  width: 300px;
-  font-size: 15px;
+  top: -17px;
+  left: -50px;
+  width: 400px;
+  font-size: 18px;
   text-align: left;
   line-height: 28px;
 }
@@ -244,6 +244,6 @@ span.notoSans {
 #about .menu .spotify:before {
   content: "\f1dd";
 }
-#about .menu .pixiv:before {
-  content: "\f194";
+#about .menu .github:before{
+  content: "\f1c9";
 }
