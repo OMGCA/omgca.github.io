@@ -147,11 +147,12 @@ span.notoSans {
 }
 #about #me .description {
   position: absolute;
-  top: 0;
+  top: -13px;
   left: -40px;
-  width: 280px;
+  width: 300px;
+  font-size: 15px;
   text-align: left;
-  line-height: 32px;
+  line-height: 28px;
 }
 #about #me .description li {
   padding: 0;
@@ -211,22 +212,22 @@ span.notoSans {
 }
 #about .menu a:hover span {
   opacity: 1;
-  top: 62px;
+  top: 55px;
 }
 #about .menu a:before {
   font-family: 'foundation-icons';
   font-style: normal;
   font-weight: normal;
   display: inline-block;
-  width: 25px;
+  width: 30px;
   padding: 0;
   margin: 0;
   color: #b0b0b0;
-  font-size: 25px;
+  font-size: 35px;
   text-align: center;
   line-height: 1;
   float: left;
-  transition: .5s;
+  transition: .8s;
 }
 #about .menu a:hover:before {
   color: #d4d4d4;
@@ -240,8 +241,8 @@ span.notoSans {
 #about .menu .steam:before {
   content: "\f1e0";
 }
-#about .menu .tumblr:before {
-  content: "\f1e3";
+#about .menu .spotify:before {
+  content: "\f1dd";
 }
 #about .menu .pixiv:before {
   content: "\f194";
