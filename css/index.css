@@ -90,7 +90,7 @@ span.listIco {
   border-radius: 6px;
   -moz-box-shadow: 0 0 4px 0 #bbb;
   -webkit-box-shadow: 0 0 4px 0 #bbb;
-  box-shadow: 0 0 4px 0 #bbb;
+  box-shadow: 0 0 8px 0 rgb(90, 133, 226);
   -moz-perspective: 600px;
   -webkit-perspective: 600px;
   perspective: 600px;
@@ -102,7 +102,7 @@ span.listIco {
   position: absolute;
   text-align: center;
   width: 100%;
-  bottom: -30px;
+  bottom: -40px;
   left: -8px;
   margin: auto;
   color: #a4a4a4;
@@ -111,13 +111,13 @@ span.listIco {
 }
 #about #ico {
   position: absolute;
-  top: 50px;
-  left: 15px;
+  top: 55px;
+  left: 25px;
   margin: auto;
   width: 140px;
   height: auto;
   background-color: #6cabdf;
-  padding: 8px;
+  padding: 6px;
   -moz-border-radius: 120px;
   -webkit-border-radius: 120px;
   border-radius: 150px;
@@ -132,8 +132,8 @@ span.listIco {
   margin: 0 40px;
   height: 150px;
   width: 375px;
-  border-top: 3px solid #c7c7c7;
-  border-bottom: 3px solid #c7c7c7;
+  border-top: 3px solid #d6d5d5;
+  border-bottom: 3px solid #d6d5d5;
 }
 #about #me .description {
   position: absolute;
@@ -149,11 +149,11 @@ span.listIco {
 }
 #about .menu {
   position: absolute;
-  top: 230px;
-  left: -20px;
-  right: 0;
+  top: 250px;
+  left: 5px;
+  right: 0px;
   margin: auto;
-  width: 450px;
+  width: 700px;
   color: #fff;
   text-align: center;
 }
@@ -186,7 +186,7 @@ span.listIco {
   box-shadow: 0 0 6px 0 #bbb;
   background: #444;
   color: #fff;
-  font-size: 22px;
+  font-size: 30px;
   line-height: 1;
   transition: .5s;
 }
@@ -202,7 +202,7 @@ span.listIco {
 }
 #about .menu a:hover span {
   opacity: 0.8;
-  top: 55px;
+  top: 70px;
   font-size: 20px;
   text-align: center;
   width: 60px;
@@ -216,7 +216,7 @@ span.listIco {
   padding: 0;
   margin: 0;
   color: #3a3a3a;
-  font-size: 35px;
+  font-size: 50px;
   text-align: center;
   line-height: 1.5;
   float: left;
