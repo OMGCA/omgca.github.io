@@ -44,7 +44,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   font-weight: 100;
   font-size: 24px;
-  color: #6cabdf;
+  color: #5d82d3;
   min-width: 760px;
   display: flex;
   -webkit-display: flex;
@@ -116,7 +116,7 @@ span.listIco {
   margin: auto;
   width: 140px;
   height: auto;
-  background-color: #6cabdf;
+  background-color: #5d82d3;
   padding: 6px;
   -moz-border-radius: 120px;
   -webkit-border-radius: 120px;
