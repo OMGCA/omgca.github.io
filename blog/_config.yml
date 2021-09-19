@@ -1,0 +1,21 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+
+# Setup
+title:               Online Formula Challenge Racing
+tagline:             'Race results, championship standing, documents and more'
+description:         'Info bulletin for OFCR Championship'
+url:                 https://www.weibo.com/u/5886115889
+baseurl:             'https://ofcr.github.io'
+paginate:            5
+
+# About/contact
+author:
+  name:              Tian Xia
+  url:               https://omgca.github.io/ofcr-info
+  email:             t.seb.xia@gmail.com
+
+# Custom vars
+version:             0.0.1
