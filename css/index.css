@@ -44,7 +44,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   font-weight: 100;
   font-size: 24px;
-  color: #5d82d3;
+  color: #dfc90b;
   min-width: 760px;
   display: flex;
   -webkit-display: flex;
@@ -90,7 +90,7 @@ span.listIco {
   border-radius: 6px;
   -moz-box-shadow: 0 0 4px 0 #bbb;
   -webkit-box-shadow: 0 0 4px 0 #bbb;
-  box-shadow: 0 0 8px 0 rgb(90, 133, 226);
+  box-shadow: 0 0 8px 0 #dfc90b;
   -moz-perspective: 600px;
   -webkit-perspective: 600px;
   perspective: 600px;
@@ -116,7 +116,7 @@ span.listIco {
   margin: auto;
   width: 140px;
   height: auto;
-  background-color: #5d82d3;
+  background-color: #dfc90b;
   padding: 6px;
   -moz-border-radius: 120px;
   -webkit-border-radius: 120px;
