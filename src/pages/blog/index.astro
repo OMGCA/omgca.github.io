@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => {
+  // Exclude drafts in production
+  return !data.draft;
+});
+
+// Sort by date descending
+const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Extract unique categories for filter
+const categories = [...new Set(posts.map(p => p.data.category))].sort();
+
+// Read ?category= query param for filtering (handled via Astro.request in SSR,
+// but for static site we use client-side filtering via data attributes)
+---
+
+<BaseLayout title="Blog — Sebastian">
+  <header class="blog-header">
+    <h1>Blog</h1>
+    <p class="blog-subtitle">Thoughts, notes, and stories — written in Markdown, sorted by date.</p>
+  </header>
+
+  {categories.length > 1 && (
+    <div class="category-filters" id="category-filters">
+      <button class="cat-btn active" data-category="all">All</button>
+      {categories.map(cat => (
+        <button class="cat-btn" data-category={cat.toLowerCase()}>{cat}</button>
+      ))}
+    </div>
+  )}
+
+  <div class="blog-list" id="blog-list">
+    {posts.length === 0 ? (
+      <div class="blog-empty surface">
+        <p>No posts yet. Check back soon.</p>
+      </div>
+    ) : (
+      posts.map(post => (
+        <div class="blog-item" data-categories={`all ${post.data.category.toLowerCase()}`}>
+          <BlogCard post={post} />
+        </div>
+      ))
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-header {
+    margin-bottom: 2rem;
+  }
+
+  .blog-subtitle {
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+
+  .category-filters {
+    display: flex;
+    gap: 0.375rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cat-btn {
+    padding: 0.375rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cat-btn:hover {
+    color: var(--color-text);
+    border-color: var(--color-text-secondary);
+  }
+
+  .cat-btn.active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #ffffff;
+  }
+
+  .blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .blog-item {
+    transition: opacity 0.3s ease;
+  }
+
+  .blog-item.hidden {
+    display: none;
+  }
+
+  .blog-empty {
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .blog-empty p {
+    margin: 0;
+  }
+</style>
+
+<script>
+  // Client-side category filtering
+  const filters = document.getElementById('category-filters');
+  const list = document.getElementById('blog-list');
+
+  if (filters && list) {
+    filters.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('[data-category]');
+      if (!btn) return;
+
+      // Update active state
+      filters.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const category = btn.dataset.category!;
+
+      // Show/hide posts
+      list.querySelectorAll('.blog-item').forEach(item => {
+        const cats = (item as HTMLElement).dataset.categories || '';
+        if (category === 'all' || cats.split(' ').includes(category)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  }
+</script>

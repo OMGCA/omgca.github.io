@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import OnlineProfile from '../components/OnlineProfile.astro';
+import OfflineProfile from '../components/OfflineProfile.astro';
+import OnlineContent from '../components/OnlineContent.astro';
+import OfflineContent from '../components/OfflineContent.astro';
+---
+
+<BaseLayout title="Sebastian — Home">
+  <!-- Online persona -->
+  <div class="mode-section mode-online">
+    <div class="profile-section">
+      <OnlineProfile />
+    </div>
+    <div class="content-section">
+      <OnlineContent />
+    </div>
+  </div>
+
+  <!-- Offline persona -->
+  <div class="mode-section mode-offline">
+    <div class="profile-section">
+      <OfflineProfile />
+    </div>
+    <div class="content-section">
+      <OfflineContent />
+    </div>
+  </div>
+</BaseLayout>
+

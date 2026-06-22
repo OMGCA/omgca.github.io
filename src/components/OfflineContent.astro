@@ -1,0 +1,243 @@
+---
+// Offline mode main content — work experience + portfolio
+import { readdirSync } from 'node:fs';
+import { extname, join } from 'node:path';
+import PortfolioCard from './PortfolioCard.astro';
+
+function getImages(dir: string): string[] {
+  const exts = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+  try {
+    return readdirSync(join(process.cwd(), 'public', 'portfolio', dir))
+      .filter(f => exts.has(extname(f).toLowerCase()))
+      .sort()
+      .map(f => `/portfolio/${dir}/${f}`);
+  } catch {
+    return [];
+  }
+}
+
+const insta360Images = getImages('insta360_hmos');
+const moodMatchImages = getImages('mood_match');
+const partialAodImages = getImages('partial_aod');
+const stickerImages = getImages('sticker');
+const selfAdaptImages = getImages('self_adapt_ui');
+---
+
+<section class="offline-content">
+  <div class="section-header">
+    <h2>Portfolio</h2>
+  </div>
+
+  <div class="portfolio-grid">
+    <PortfolioCard
+      title="Insta360 HarmonyOS App"
+      description="Providing basic camera connectivity and panorama video editing features by utilising ArkTS and KMP."
+      tags={['ArkTS', 'KMP', 'HarmonyOS']}
+      images={insta360Images}
+    />
+    <PortfolioCard
+      title="HarmonyOS 6.0 Mood Match Theme"
+      description="Designed and implemented a declarative syntax to describe 3D model loading and animation control in HMOS ThemeEngine."
+      tags={['ArkTS', 'HarmonyOS', 'ThemeEngine']}
+      images={moodMatchImages}
+    />
+    <PortfolioCard
+      title="Partial AOD One-mirror"
+      description="Developed the animation routine from the customised AOD to the lockscreen in HarmonyOS."
+      tags={['ArkTS', 'HarmonyOS', 'Animation']}
+      images={partialAodImages}
+    />
+    <PortfolioCard
+      title="Pura X Sticker Theme"
+      description="Architected and developed the first version of sticker theme exclusively for Huawei Pura X, featuring system-data driven stickers and 2D physics effects."
+      tags={['ArkTS', 'HarmonyOS', 'ThemeEngine']}
+      images={stickerImages}
+    />
+    <PortfolioCard
+      title="HarmonyOS NEXT Wallpaper Basic Experience"
+      description="Developed animation routines for wallpaper and theme display including transitions between AOD, lockscreen and launcher. Built a declarative UI framework that drives millions of online themes and official themes."
+      tags={['ArkTS', 'HarmonyOS', 'ThemeEngine', 'Animation']}
+    />
+    <PortfolioCard
+      title="Self-adaptive UI Engine (XLayout)"
+      description="First launched in Mate Xs 2, providing a system-wide solution to adapt application UI on foldable devices, requiring no code changes from third-party developers."
+      tags={['HarmonyOS', 'Foldable', 'UI Framework']}
+      images={selfAdaptImages}
+    />
+  </div>
+
+  <div class="section-header timeline-header">
+    <h2>Experience</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">
+        <time datetime="2025-10">Oct 2025</time>
+        <span class="timeline-date-sep">&mdash;</span>
+        <span class="timeline-date-now">Now</span>
+      </div>
+      <div class="timeline-body">
+        <h3 class="timeline-role">Software Engineer</h3>
+        <p class="timeline-company">Arashi Vision (Insta360)</p>
+        <p class="timeline-desc">
+          HarmonyOS application development and Android cloud storage service client.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        <time datetime="2020-04">Apr 2020</time>
+        <span class="timeline-date-sep">&mdash;</span>
+        <time datetime="2025-10">Oct 2025</time>
+        <span class="timeline-duration">5.5 yrs</span>
+      </div>
+      <div class="timeline-body">
+        <h3 class="timeline-role">Senior Software Engineer</h3>
+        <p class="timeline-company">Huawei</p>
+        <p class="timeline-desc">
+          HarmonyOS Wallpaper Framework, ThemeEngine, AOSP View System, vPNF, and resource compilation pipeline maintenance.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        <time datetime="2019-10">Oct 2019</time>
+        <span class="timeline-date-sep">&mdash;</span>
+        <time datetime="2020-01">Jan 2020</time>
+        <span class="timeline-duration">4 mos</span>
+      </div>
+      <div class="timeline-body">
+        <h3 class="timeline-role">Performance Engineer Intern</h3>
+        <p class="timeline-company">Nvidia</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .offline-content {
+    margin-top: 0.5rem;
+  }
+
+  .section-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-header h2 {
+    margin-bottom: 0;
+  }
+
+  /* === Timeline === */
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: var(--transition-colors);
+  }
+
+  .timeline-item:first-child {
+    padding-top: 0;
+  }
+
+  .timeline-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .timeline-date {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    padding-top: 0.125rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline-date-sep {
+    display: none;
+  }
+
+  .timeline-date-now {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .timeline-duration {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    opacity: 0.7;
+    margin-top: 0.125rem;
+  }
+
+  .timeline-body {
+    min-width: 0;
+  }
+
+  .timeline-role {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 0.125rem;
+  }
+
+  .timeline-company {
+    font-size: 0.875rem;
+    color: var(--color-accent);
+    margin: 0 0 0.375rem;
+    font-weight: 500;
+  }
+
+  .timeline-desc {
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .timeline-item {
+      grid-template-columns: 1fr;
+      gap: 0.375rem;
+      padding: 1rem 0;
+    }
+
+    .timeline-date {
+      flex-direction: row;
+      gap: 0.375rem;
+      flex-wrap: wrap;
+    }
+
+    .timeline-date-sep {
+      display: inline;
+    }
+  }
+
+  .timeline-header {
+    margin-top: 2.5rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

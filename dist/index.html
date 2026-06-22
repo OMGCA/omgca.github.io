@@ -1,0 +1,469 @@
+<!DOCTYPE html><html lang="en" data-mode="online"><head><meta charset="utf-8"><link rel="icon" type="image/png" href="/logo_black.png"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Personal homepage — online &amp; offline"><!-- Google Fonts: DM Serif Display + DM Sans --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet"><title>Sebastian — Home</title><link rel="stylesheet" href="/_astro/BaseLayout.BVmwjJ5l.css"><link rel="stylesheet" href="/_astro/index.CxRo7E2P.css"></head><body><div class="container-narrow"><header class="header" data-astro-cid-nen7h5rs><nav class="nav" aria-label="Main navigation" data-astro-cid-nen7h5rs><a href="/" class="nav-logo" data-astro-cid-nen7h5rs><img src="/logo_white.png" alt="Home" class="logo-img logo-online" width="40" height="40" data-astro-cid-nen7h5rs><img src="/logo_black.png" alt="Home" class="logo-img logo-offline" width="40" height="40" data-astro-cid-nen7h5rs></a><div class="nav-links" data-astro-cid-nen7h5rs><a href="/" class="nav-link" aria-current="page" data-astro-cid-nen7h5rs>Home</a><a href="/blog" class="nav-link" data-astro-cid-nen7h5rs>Blog</a></div><div class="nav-toggle" data-astro-cid-nen7h5rs><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(c,s,d)=>s in c?g(c,s,{enumerable:!0,configurable:!0,writable:!0,value:d}):c[s]=d;var l=(c,s,d)=>w(c,typeof s!="symbol"?s+"":s,d);var E=new Set(["__proto__","constructor","prototype"]);{let c={0:t=>y(t),1:t=>d(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(d(t)),5:t=>new Set(d(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in c?c[p](e):void 0},d=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},i=this.querySelectorAll("template[data-astro-template]");for(let o of i){let a=o.closest(this.tagName);a!=null&&a.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let a=o.closest(this.tagName);a!=null&&a.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let a=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(a+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${a}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let n=new URL(e,document.baseURI),r=`astro-retry=${Date.now()}`,i=n.hash.replace(/^#/,"");return n.hash=i?`${i}&${r}`:r,n.toString()}async importWithRetry(e){try{return await import(e)}catch(n){return await new Promise(r=>setTimeout(r,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let n=this.getAttribute("component-url"),r=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:n}});this.dispatchEvent(r)&&console.error(`[astro-island] Error hydrating ${n}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url");try{let[i,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),r?this.importWithRetry(r):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=i;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=i[h]}return this.hydrator=u,this.hydrate}catch(i){return this.handleHydrationError(i),()=>{}}},e,this)}catch(r){this.handleHydrationError(r)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="2azQI2" prefix="r1" component-url="/_astro/ModeToggle.DXy13E0w.js" component-export="default" renderer-url="/_astro/client.DW6xmEpB.js" props="{&quot;data-astro-cid-nen7h5rs&quot;:[0,true]}" ssr client="load" opts="{&quot;name&quot;:&quot;ModeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="mode-capsule is-online" aria-label="Switch to offline (work) mode"><span class="mode-capsule-slider"></span><span class="mode-capsule-half mode-capsule-left"><svg class="mode-capsule-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 7 7 2-7 2-2 7-2-7-7-2 7-2z"></path></svg><span class="mode-capsule-text">Casual</span></span><span class="mode-capsule-half mode-capsule-right"><svg class="mode-capsule-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg><span class="mode-capsule-text">Work</span></span></button><!--astro:end--></astro-island></div></nav></header><main>
+  
+  <div class="mode-section mode-online"><div class="profile-section"><div class="profile" data-astro-cid-ynulud3l><div class="profile-avatar" data-astro-cid-ynulud3l><img src="https://avatars.githubusercontent.com/u/41295316" alt="OMGCA" class="avatar-img" width="96" height="96" data-astro-cid-ynulud3l></div><div class="profile-info" data-astro-cid-ynulud3l><h1 class="profile-name" data-astro-cid-ynulud3l><span class="profile-nickname" data-astro-cid-ynulud3l>OMGCA</span></h1><p class="profile-bio" data-astro-cid-ynulud3l>A sorry collection of organic cells</p><div class="profile-links" data-astro-cid-ynulud3l><a href="https://steamcommunity.com/id/OMGCA/" class="profile-link" target="_blank" rel="noopener noreferrer" aria-label="Steam profile" data-astro-cid-ynulud3l><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" data-astro-cid-ynulud3l><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM8.5 9.2 6 16l3.5 2.5 1-2 2 .5.5-2-2-.5.5-2.5-3-2.8zm5.5 0 1 2.5-2 .5.5 2 2 .5 1 2L20 16l-2.5-6.8L14 9.2z" data-astro-cid-ynulud3l></path></svg><span data-astro-cid-ynulud3l>Steam</span></a><a href="https://space.bilibili.com/6514851" class="profile-link" target="_blank" rel="noopener noreferrer" aria-label="Bilibili space" data-astro-cid-ynulud3l><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-ynulud3l><rect x="2" y="3" width="20" height="14" rx="2" ry="2" data-astro-cid-ynulud3l></rect><polyline points="10 9 15 12 10 15 10 9" data-astro-cid-ynulud3l></polyline></svg><span data-astro-cid-ynulud3l>Bilibili</span></a></div></div></div></div><div class="content-section"><section class="online-content" data-astro-cid-gylfalio><div class="section-header" data-astro-cid-gylfalio><h2 data-astro-cid-gylfalio>Photography</h2><p class="section-sub" data-astro-cid-gylfalio>Selected shots</p></div><div class="photo-grid" id="photo-grid" data-astro-cid-hydcl3sf><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06429.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC09800_edited.png" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC05258.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06413.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC05298.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06126.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC07021.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06359.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06322.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06289.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC08387.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC08295.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06161.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC09788_edited.jpeg" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06120.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC05205.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06439.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC09598.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06384.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06041.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC08030.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06277.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC07696.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06182.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06325.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06475.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC05279.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC05272.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC07854.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06323.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06389.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC05285.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06156.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC08332.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC09125.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC08388.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06352.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06291.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC09151.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06091.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06013.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC08434.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC08558.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC05283.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06568.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06367.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC05300.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06095.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div><div class="photo-card surface" data-astro-cid-hydcl3sf><img src="/photos/DSC06329.JPG" alt="" loading="lazy" decoding="async" class="photo-img" onload="this.style.opacity='1'" data-astro-cid-hydcl3sf></div></div><script type="module">var e=document.getElementById(`photo-grid`);if(e){let t=Array.from(e.children);for(let n=t.length-1;n>0;n--){let r=Math.floor(Math.random()*(n+1));e.appendChild(t[r])}}</script></section></div></div>
+
+  
+  <div class="mode-section mode-offline"><div class="profile-section"><div class="profile" data-astro-cid-eo43btnz><div class="profile-avatar" data-astro-cid-eo43btnz><img src="https://media.licdn.com/dms/image/v2/C5603AQGoqE9JRtrWcA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1638113018937?e=1783555200&v=beta&t=8OP04GwNU557FQqg8hWgJvKYPKrQCd8SyoN_4z_Kkm4" alt="Tian Xia" class="avatar-img" width="96" height="96" data-astro-cid-eo43btnz></div><div class="profile-info" data-astro-cid-eo43btnz><h1 class="profile-name" data-astro-cid-eo43btnz>Tian <span class="profile-nickname" data-astro-cid-eo43btnz>'Sebastian'</span> Xia</h1><p class="profile-title" data-astro-cid-eo43btnz>Mobile App Software Engineer</p><p class="profile-bio" data-astro-cid-eo43btnz>Insta360 Software Engineer, building the HarmonyOS application and the Android cloud storage service client.</p><p class="profile-edu" data-astro-cid-eo43btnz>MSc (Res) &amp; BEng, University of York (2015–2020)</p><div class="profile-links" data-astro-cid-eo43btnz><a href="https://www.linkedin.com/in/t-seb-xia/" class="profile-link" target="_blank" rel="noopener noreferrer" data-astro-cid-eo43btnz><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" data-astro-cid-eo43btnz><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" data-astro-cid-eo43btnz></path></svg><span data-astro-cid-eo43btnz>LinkedIn</span></a><a href="mailto:t.seb.xia@gmail.com" class="profile-link" data-astro-cid-eo43btnz><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-eo43btnz><rect x="2" y="4" width="20" height="16" rx="2" data-astro-cid-eo43btnz></rect><path d="m22 4-10 8L2 4" data-astro-cid-eo43btnz></path></svg><span data-astro-cid-eo43btnz>Email</span></a></div></div></div></div><div class="content-section"><section class="offline-content" data-astro-cid-elint5e2><div class="section-header" data-astro-cid-elint5e2><h2 data-astro-cid-elint5e2>Portfolio</h2></div><div class="portfolio-grid" data-astro-cid-elint5e2><article class="portfolio-card surface" data-astro-cid-g4ygm53b><div class="carousel" id="carousel-insta360-harmonyos-app" data-astro-cid-g4ygm53b><div class="carousel-track" data-astro-cid-g4ygm53b><div class="carousel-slide" data-index="0" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/insta360_hmos/07AB4DFF5CF01BAEA3914BE52D75E687.jpg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/insta360_hmos/07AB4DFF5CF01BAEA3914BE52D75E687.jpg" alt="Insta360 HarmonyOS App — image 1" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div><div class="carousel-slide" data-index="1" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/insta360_hmos/6B6086C798CA2359B6FE12D8E226EBC4.jpg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/insta360_hmos/6B6086C798CA2359B6FE12D8E226EBC4.jpg" alt="Insta360 HarmonyOS App — image 2" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div><div class="carousel-slide" data-index="2" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/insta360_hmos/7ABF948BCC5FABBD24C6D94F3EF1C3B7.jpg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/insta360_hmos/7ABF948BCC5FABBD24C6D94F3EF1C3B7.jpg" alt="Insta360 HarmonyOS App — image 3" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div><div class="carousel-slide" data-index="3" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/insta360_hmos/BFD579B8491CFCA01115AE7053194A9F.jpg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/insta360_hmos/BFD579B8491CFCA01115AE7053194A9F.jpg" alt="Insta360 HarmonyOS App — image 4" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div><div class="carousel-slide" data-index="4" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/insta360_hmos/C5C4315CE9E1092F458E28F2C23BBB47.jpg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/insta360_hmos/C5C4315CE9E1092F458E28F2C23BBB47.jpg" alt="Insta360 HarmonyOS App — image 5" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div></div><button class="carousel-btn carousel-prev" aria-label="Previous image" data-astro-cid-g4ygm53b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-g4ygm53b><polyline points="15 18 9 12 15 6" data-astro-cid-g4ygm53b></polyline></svg></button><button class="carousel-btn carousel-next" aria-label="Next image" data-astro-cid-g4ygm53b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-g4ygm53b><polyline points="9 18 15 12 9 6" data-astro-cid-g4ygm53b></polyline></svg></button><div class="carousel-dots" data-astro-cid-g4ygm53b><button class="carousel-dot" data-index="0" aria-label="Image 1" data-astro-cid-g4ygm53b></button><button class="carousel-dot" data-index="1" aria-label="Image 2" data-astro-cid-g4ygm53b></button><button class="carousel-dot" data-index="2" aria-label="Image 3" data-astro-cid-g4ygm53b></button><button class="carousel-dot" data-index="3" aria-label="Image 4" data-astro-cid-g4ygm53b></button><button class="carousel-dot" data-index="4" aria-label="Image 5" data-astro-cid-g4ygm53b></button></div></div><div class="portfolio-body" data-astro-cid-g4ygm53b><h3 class="portfolio-title" data-astro-cid-g4ygm53b>Insta360 HarmonyOS App</h3><p class="portfolio-desc" data-astro-cid-g4ygm53b>Providing basic camera connectivity and panorama video editing features by utilising ArkTS and KMP.</p><div class="portfolio-tags" data-astro-cid-g4ygm53b><span class="portfolio-tag" data-astro-cid-g4ygm53b>ArkTS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>KMP</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>HarmonyOS</span></div></div></article><script>(function(){const id = "carousel-insta360-harmonyos-app";
+
+  (function () {
+    var carousel = document.getElementById(id);
+    if (!carousel) return;
+
+    var track = carousel.querySelector('.carousel-track');
+    var dots = carousel.querySelectorAll('.carousel-dot');
+    var prev = carousel.querySelector('.carousel-prev');
+    var next = carousel.querySelector('.carousel-next');
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var total = slides.length;
+
+    if (total < 2) return;
+
+    var current = 0;
+    var startX = 0;
+    var dragging = false;
+
+    function goTo(index) {
+      current = ((index % total) + total) % total;
+      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+
+    // Button clicks
+    if (prev) prev.addEventListener('click', function () { goTo(current - 1); });
+    if (next) next.addEventListener('click', function () { goTo(current + 1); });
+
+    // Dot clicks
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goTo(Number(dot.dataset.index));
+      });
+    });
+
+    // Swipe / drag gestures
+    carousel.addEventListener('mousedown', onStart);
+    carousel.addEventListener('touchstart', onStart, { passive: true });
+    carousel.addEventListener('mousemove', onMove);
+    carousel.addEventListener('touchmove', onMove, { passive: true });
+    carousel.addEventListener('mouseup', onEnd);
+    carousel.addEventListener('touchend', onEnd);
+    carousel.addEventListener('mouseleave', onEnd);
+    carousel.addEventListener('touchcancel', onEnd);
+
+    function onStart(e) {
+      dragging = true;
+      track.style.transition = 'none';
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function onMove(e) {
+      if (!dragging) return;
+      var x = e.touches ? e.touches[0].clientX : e.clientX;
+      var diff = x - startX;
+      var offset = -current * 100 + (diff / carousel.offsetWidth) * 100;
+      track.style.transform = 'translateX(' + offset + '%)';
+    }
+
+    function onEnd(e) {
+      if (!dragging) return;
+      dragging = false;
+      var x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      var diff = x - startX;
+      // Threshold: 15% of carousel width
+      if (Math.abs(diff) > carousel.offsetWidth * 0.15) {
+        goTo(diff > 0 ? current - 1 : current + 1);
+      } else {
+        goTo(current); // snap back
+      }
+    }
+
+    // Initial state
+    goTo(0);
+  })();
+})();</script><article class="portfolio-card surface" data-astro-cid-g4ygm53b><div class="carousel" id="carousel-harmonyos-6-0-mood-match-theme" data-astro-cid-g4ygm53b><div class="carousel-track" data-astro-cid-g4ygm53b><div class="carousel-slide" data-index="0" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/mood_match/PixPin_2026-06-22_23-47-37.png)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/mood_match/PixPin_2026-06-22_23-47-37.png" alt="HarmonyOS 6.0 Mood Match Theme — image 1" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div></div></div><div class="portfolio-body" data-astro-cid-g4ygm53b><h3 class="portfolio-title" data-astro-cid-g4ygm53b>HarmonyOS 6.0 Mood Match Theme</h3><p class="portfolio-desc" data-astro-cid-g4ygm53b>Designed and implemented a declarative syntax to describe 3D model loading and animation control in HMOS ThemeEngine.</p><div class="portfolio-tags" data-astro-cid-g4ygm53b><span class="portfolio-tag" data-astro-cid-g4ygm53b>ArkTS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>HarmonyOS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>ThemeEngine</span></div></div></article><script>(function(){const id = "carousel-harmonyos-6-0-mood-match-theme";
+
+  (function () {
+    var carousel = document.getElementById(id);
+    if (!carousel) return;
+
+    var track = carousel.querySelector('.carousel-track');
+    var dots = carousel.querySelectorAll('.carousel-dot');
+    var prev = carousel.querySelector('.carousel-prev');
+    var next = carousel.querySelector('.carousel-next');
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var total = slides.length;
+
+    if (total < 2) return;
+
+    var current = 0;
+    var startX = 0;
+    var dragging = false;
+
+    function goTo(index) {
+      current = ((index % total) + total) % total;
+      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+
+    // Button clicks
+    if (prev) prev.addEventListener('click', function () { goTo(current - 1); });
+    if (next) next.addEventListener('click', function () { goTo(current + 1); });
+
+    // Dot clicks
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goTo(Number(dot.dataset.index));
+      });
+    });
+
+    // Swipe / drag gestures
+    carousel.addEventListener('mousedown', onStart);
+    carousel.addEventListener('touchstart', onStart, { passive: true });
+    carousel.addEventListener('mousemove', onMove);
+    carousel.addEventListener('touchmove', onMove, { passive: true });
+    carousel.addEventListener('mouseup', onEnd);
+    carousel.addEventListener('touchend', onEnd);
+    carousel.addEventListener('mouseleave', onEnd);
+    carousel.addEventListener('touchcancel', onEnd);
+
+    function onStart(e) {
+      dragging = true;
+      track.style.transition = 'none';
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function onMove(e) {
+      if (!dragging) return;
+      var x = e.touches ? e.touches[0].clientX : e.clientX;
+      var diff = x - startX;
+      var offset = -current * 100 + (diff / carousel.offsetWidth) * 100;
+      track.style.transform = 'translateX(' + offset + '%)';
+    }
+
+    function onEnd(e) {
+      if (!dragging) return;
+      dragging = false;
+      var x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      var diff = x - startX;
+      // Threshold: 15% of carousel width
+      if (Math.abs(diff) > carousel.offsetWidth * 0.15) {
+        goTo(diff > 0 ? current - 1 : current + 1);
+      } else {
+        goTo(current); // snap back
+      }
+    }
+
+    // Initial state
+    goTo(0);
+  })();
+})();</script><article class="portfolio-card surface" data-astro-cid-g4ygm53b><div class="carousel" id="carousel-partial-aod-one-mirror" data-astro-cid-g4ygm53b><div class="carousel-track" data-astro-cid-g4ygm53b><div class="carousel-slide" data-index="0" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/partial_aod/95BA187BBE3B478500A56A682F067CC5.jpg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/partial_aod/95BA187BBE3B478500A56A682F067CC5.jpg" alt="Partial AOD One-mirror — image 1" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div><div class="carousel-slide" data-index="1" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/partial_aod/C9D04FB6D7A8643286E473158D8D430A.jpg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/partial_aod/C9D04FB6D7A8643286E473158D8D430A.jpg" alt="Partial AOD One-mirror — image 2" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div><div class="carousel-slide" data-index="2" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/partial_aod/DE5AE362ECA7D25012E572E8F3798F53.jpg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/partial_aod/DE5AE362ECA7D25012E572E8F3798F53.jpg" alt="Partial AOD One-mirror — image 3" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div><div class="carousel-slide" data-index="3" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/partial_aod/F93E4B59D85A6087CC56770FAA6A69D9.jpg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/partial_aod/F93E4B59D85A6087CC56770FAA6A69D9.jpg" alt="Partial AOD One-mirror — image 4" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div></div><button class="carousel-btn carousel-prev" aria-label="Previous image" data-astro-cid-g4ygm53b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-g4ygm53b><polyline points="15 18 9 12 15 6" data-astro-cid-g4ygm53b></polyline></svg></button><button class="carousel-btn carousel-next" aria-label="Next image" data-astro-cid-g4ygm53b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-g4ygm53b><polyline points="9 18 15 12 9 6" data-astro-cid-g4ygm53b></polyline></svg></button><div class="carousel-dots" data-astro-cid-g4ygm53b><button class="carousel-dot" data-index="0" aria-label="Image 1" data-astro-cid-g4ygm53b></button><button class="carousel-dot" data-index="1" aria-label="Image 2" data-astro-cid-g4ygm53b></button><button class="carousel-dot" data-index="2" aria-label="Image 3" data-astro-cid-g4ygm53b></button><button class="carousel-dot" data-index="3" aria-label="Image 4" data-astro-cid-g4ygm53b></button></div></div><div class="portfolio-body" data-astro-cid-g4ygm53b><h3 class="portfolio-title" data-astro-cid-g4ygm53b>Partial AOD One-mirror</h3><p class="portfolio-desc" data-astro-cid-g4ygm53b>Developed the animation routine from the customised AOD to the lockscreen in HarmonyOS.</p><div class="portfolio-tags" data-astro-cid-g4ygm53b><span class="portfolio-tag" data-astro-cid-g4ygm53b>ArkTS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>HarmonyOS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>Animation</span></div></div></article><script>(function(){const id = "carousel-partial-aod-one-mirror";
+
+  (function () {
+    var carousel = document.getElementById(id);
+    if (!carousel) return;
+
+    var track = carousel.querySelector('.carousel-track');
+    var dots = carousel.querySelectorAll('.carousel-dot');
+    var prev = carousel.querySelector('.carousel-prev');
+    var next = carousel.querySelector('.carousel-next');
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var total = slides.length;
+
+    if (total < 2) return;
+
+    var current = 0;
+    var startX = 0;
+    var dragging = false;
+
+    function goTo(index) {
+      current = ((index % total) + total) % total;
+      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+
+    // Button clicks
+    if (prev) prev.addEventListener('click', function () { goTo(current - 1); });
+    if (next) next.addEventListener('click', function () { goTo(current + 1); });
+
+    // Dot clicks
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goTo(Number(dot.dataset.index));
+      });
+    });
+
+    // Swipe / drag gestures
+    carousel.addEventListener('mousedown', onStart);
+    carousel.addEventListener('touchstart', onStart, { passive: true });
+    carousel.addEventListener('mousemove', onMove);
+    carousel.addEventListener('touchmove', onMove, { passive: true });
+    carousel.addEventListener('mouseup', onEnd);
+    carousel.addEventListener('touchend', onEnd);
+    carousel.addEventListener('mouseleave', onEnd);
+    carousel.addEventListener('touchcancel', onEnd);
+
+    function onStart(e) {
+      dragging = true;
+      track.style.transition = 'none';
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function onMove(e) {
+      if (!dragging) return;
+      var x = e.touches ? e.touches[0].clientX : e.clientX;
+      var diff = x - startX;
+      var offset = -current * 100 + (diff / carousel.offsetWidth) * 100;
+      track.style.transform = 'translateX(' + offset + '%)';
+    }
+
+    function onEnd(e) {
+      if (!dragging) return;
+      dragging = false;
+      var x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      var diff = x - startX;
+      // Threshold: 15% of carousel width
+      if (Math.abs(diff) > carousel.offsetWidth * 0.15) {
+        goTo(diff > 0 ? current - 1 : current + 1);
+      } else {
+        goTo(current); // snap back
+      }
+    }
+
+    // Initial state
+    goTo(0);
+  })();
+})();</script><article class="portfolio-card surface" data-astro-cid-g4ygm53b><div class="carousel" id="carousel-pura-x-sticker-theme" data-astro-cid-g4ygm53b><div class="carousel-track" data-astro-cid-g4ygm53b><div class="carousel-slide" data-index="0" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/sticker/Image 2.jpeg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/sticker/Image 2.jpeg" alt="Pura X Sticker Theme — image 1" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div><div class="carousel-slide" data-index="1" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/sticker/Image.jpeg)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/sticker/Image.jpeg" alt="Pura X Sticker Theme — image 2" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div><div class="carousel-slide" data-index="2" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/sticker/PixPin_2026-06-22_23-57-20.png)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/sticker/PixPin_2026-06-22_23-57-20.png" alt="Pura X Sticker Theme — image 3" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div></div><button class="carousel-btn carousel-prev" aria-label="Previous image" data-astro-cid-g4ygm53b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-g4ygm53b><polyline points="15 18 9 12 15 6" data-astro-cid-g4ygm53b></polyline></svg></button><button class="carousel-btn carousel-next" aria-label="Next image" data-astro-cid-g4ygm53b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-g4ygm53b><polyline points="9 18 15 12 9 6" data-astro-cid-g4ygm53b></polyline></svg></button><div class="carousel-dots" data-astro-cid-g4ygm53b><button class="carousel-dot" data-index="0" aria-label="Image 1" data-astro-cid-g4ygm53b></button><button class="carousel-dot" data-index="1" aria-label="Image 2" data-astro-cid-g4ygm53b></button><button class="carousel-dot" data-index="2" aria-label="Image 3" data-astro-cid-g4ygm53b></button></div></div><div class="portfolio-body" data-astro-cid-g4ygm53b><h3 class="portfolio-title" data-astro-cid-g4ygm53b>Pura X Sticker Theme</h3><p class="portfolio-desc" data-astro-cid-g4ygm53b>Architected and developed the first version of sticker theme exclusively for Huawei Pura X, featuring system-data driven stickers and 2D physics effects.</p><div class="portfolio-tags" data-astro-cid-g4ygm53b><span class="portfolio-tag" data-astro-cid-g4ygm53b>ArkTS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>HarmonyOS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>ThemeEngine</span></div></div></article><script>(function(){const id = "carousel-pura-x-sticker-theme";
+
+  (function () {
+    var carousel = document.getElementById(id);
+    if (!carousel) return;
+
+    var track = carousel.querySelector('.carousel-track');
+    var dots = carousel.querySelectorAll('.carousel-dot');
+    var prev = carousel.querySelector('.carousel-prev');
+    var next = carousel.querySelector('.carousel-next');
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var total = slides.length;
+
+    if (total < 2) return;
+
+    var current = 0;
+    var startX = 0;
+    var dragging = false;
+
+    function goTo(index) {
+      current = ((index % total) + total) % total;
+      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+
+    // Button clicks
+    if (prev) prev.addEventListener('click', function () { goTo(current - 1); });
+    if (next) next.addEventListener('click', function () { goTo(current + 1); });
+
+    // Dot clicks
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goTo(Number(dot.dataset.index));
+      });
+    });
+
+    // Swipe / drag gestures
+    carousel.addEventListener('mousedown', onStart);
+    carousel.addEventListener('touchstart', onStart, { passive: true });
+    carousel.addEventListener('mousemove', onMove);
+    carousel.addEventListener('touchmove', onMove, { passive: true });
+    carousel.addEventListener('mouseup', onEnd);
+    carousel.addEventListener('touchend', onEnd);
+    carousel.addEventListener('mouseleave', onEnd);
+    carousel.addEventListener('touchcancel', onEnd);
+
+    function onStart(e) {
+      dragging = true;
+      track.style.transition = 'none';
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function onMove(e) {
+      if (!dragging) return;
+      var x = e.touches ? e.touches[0].clientX : e.clientX;
+      var diff = x - startX;
+      var offset = -current * 100 + (diff / carousel.offsetWidth) * 100;
+      track.style.transform = 'translateX(' + offset + '%)';
+    }
+
+    function onEnd(e) {
+      if (!dragging) return;
+      dragging = false;
+      var x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      var diff = x - startX;
+      // Threshold: 15% of carousel width
+      if (Math.abs(diff) > carousel.offsetWidth * 0.15) {
+        goTo(diff > 0 ? current - 1 : current + 1);
+      } else {
+        goTo(current); // snap back
+      }
+    }
+
+    // Initial state
+    goTo(0);
+  })();
+})();</script><article class="portfolio-card surface" data-astro-cid-g4ygm53b><div class="portfolio-body" data-astro-cid-g4ygm53b><h3 class="portfolio-title" data-astro-cid-g4ygm53b>HarmonyOS NEXT Wallpaper Basic Experience</h3><p class="portfolio-desc" data-astro-cid-g4ygm53b>Developed animation routines for wallpaper and theme display including transitions between AOD, lockscreen and launcher. Built a declarative UI framework that drives millions of online themes and official themes.</p><div class="portfolio-tags" data-astro-cid-g4ygm53b><span class="portfolio-tag" data-astro-cid-g4ygm53b>ArkTS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>HarmonyOS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>ThemeEngine</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>Animation</span></div></div></article><script>(function(){const id = "carousel-harmonyos-next-wallpaper-basic-experience";
+
+  (function () {
+    var carousel = document.getElementById(id);
+    if (!carousel) return;
+
+    var track = carousel.querySelector('.carousel-track');
+    var dots = carousel.querySelectorAll('.carousel-dot');
+    var prev = carousel.querySelector('.carousel-prev');
+    var next = carousel.querySelector('.carousel-next');
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var total = slides.length;
+
+    if (total < 2) return;
+
+    var current = 0;
+    var startX = 0;
+    var dragging = false;
+
+    function goTo(index) {
+      current = ((index % total) + total) % total;
+      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+
+    // Button clicks
+    if (prev) prev.addEventListener('click', function () { goTo(current - 1); });
+    if (next) next.addEventListener('click', function () { goTo(current + 1); });
+
+    // Dot clicks
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goTo(Number(dot.dataset.index));
+      });
+    });
+
+    // Swipe / drag gestures
+    carousel.addEventListener('mousedown', onStart);
+    carousel.addEventListener('touchstart', onStart, { passive: true });
+    carousel.addEventListener('mousemove', onMove);
+    carousel.addEventListener('touchmove', onMove, { passive: true });
+    carousel.addEventListener('mouseup', onEnd);
+    carousel.addEventListener('touchend', onEnd);
+    carousel.addEventListener('mouseleave', onEnd);
+    carousel.addEventListener('touchcancel', onEnd);
+
+    function onStart(e) {
+      dragging = true;
+      track.style.transition = 'none';
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function onMove(e) {
+      if (!dragging) return;
+      var x = e.touches ? e.touches[0].clientX : e.clientX;
+      var diff = x - startX;
+      var offset = -current * 100 + (diff / carousel.offsetWidth) * 100;
+      track.style.transform = 'translateX(' + offset + '%)';
+    }
+
+    function onEnd(e) {
+      if (!dragging) return;
+      dragging = false;
+      var x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      var diff = x - startX;
+      // Threshold: 15% of carousel width
+      if (Math.abs(diff) > carousel.offsetWidth * 0.15) {
+        goTo(diff > 0 ? current - 1 : current + 1);
+      } else {
+        goTo(current); // snap back
+      }
+    }
+
+    // Initial state
+    goTo(0);
+  })();
+})();</script><article class="portfolio-card surface" data-astro-cid-g4ygm53b><div class="carousel" id="carousel-self-adaptive-ui-engine--xlayout-" data-astro-cid-g4ygm53b><div class="carousel-track" data-astro-cid-g4ygm53b><div class="carousel-slide" data-index="0" data-astro-cid-g4ygm53b><div class="carousel-bg" style="background-image: url(/portfolio/self_adapt_ui/PixPin_2026-06-23_00-13-35.png)" aria-hidden="true" data-astro-cid-g4ygm53b></div><img src="/portfolio/self_adapt_ui/PixPin_2026-06-23_00-13-35.png" alt="Self-adaptive UI Engine (XLayout) — image 1" loading="lazy" decoding="async" data-astro-cid-g4ygm53b></div></div></div><div class="portfolio-body" data-astro-cid-g4ygm53b><h3 class="portfolio-title" data-astro-cid-g4ygm53b>Self-adaptive UI Engine (XLayout)</h3><p class="portfolio-desc" data-astro-cid-g4ygm53b>First launched in Mate Xs 2, providing a system-wide solution to adapt application UI on foldable devices, requiring no code changes from third-party developers.</p><div class="portfolio-tags" data-astro-cid-g4ygm53b><span class="portfolio-tag" data-astro-cid-g4ygm53b>HarmonyOS</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>Foldable</span><span class="portfolio-tag" data-astro-cid-g4ygm53b>UI Framework</span></div></div></article><script>(function(){const id = "carousel-self-adaptive-ui-engine--xlayout-";
+
+  (function () {
+    var carousel = document.getElementById(id);
+    if (!carousel) return;
+
+    var track = carousel.querySelector('.carousel-track');
+    var dots = carousel.querySelectorAll('.carousel-dot');
+    var prev = carousel.querySelector('.carousel-prev');
+    var next = carousel.querySelector('.carousel-next');
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var total = slides.length;
+
+    if (total < 2) return;
+
+    var current = 0;
+    var startX = 0;
+    var dragging = false;
+
+    function goTo(index) {
+      current = ((index % total) + total) % total;
+      track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    }
+
+    // Button clicks
+    if (prev) prev.addEventListener('click', function () { goTo(current - 1); });
+    if (next) next.addEventListener('click', function () { goTo(current + 1); });
+
+    // Dot clicks
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        goTo(Number(dot.dataset.index));
+      });
+    });
+
+    // Swipe / drag gestures
+    carousel.addEventListener('mousedown', onStart);
+    carousel.addEventListener('touchstart', onStart, { passive: true });
+    carousel.addEventListener('mousemove', onMove);
+    carousel.addEventListener('touchmove', onMove, { passive: true });
+    carousel.addEventListener('mouseup', onEnd);
+    carousel.addEventListener('touchend', onEnd);
+    carousel.addEventListener('mouseleave', onEnd);
+    carousel.addEventListener('touchcancel', onEnd);
+
+    function onStart(e) {
+      dragging = true;
+      track.style.transition = 'none';
+      startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+
+    function onMove(e) {
+      if (!dragging) return;
+      var x = e.touches ? e.touches[0].clientX : e.clientX;
+      var diff = x - startX;
+      var offset = -current * 100 + (diff / carousel.offsetWidth) * 100;
+      track.style.transform = 'translateX(' + offset + '%)';
+    }
+
+    function onEnd(e) {
+      if (!dragging) return;
+      dragging = false;
+      var x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      var diff = x - startX;
+      // Threshold: 15% of carousel width
+      if (Math.abs(diff) > carousel.offsetWidth * 0.15) {
+        goTo(diff > 0 ? current - 1 : current + 1);
+      } else {
+        goTo(current); // snap back
+      }
+    }
+
+    // Initial state
+    goTo(0);
+  })();
+})();</script></div><div class="section-header timeline-header" data-astro-cid-elint5e2><h2 data-astro-cid-elint5e2>Experience</h2></div><div class="timeline" data-astro-cid-elint5e2><div class="timeline-item" data-astro-cid-elint5e2><div class="timeline-date" data-astro-cid-elint5e2><time datetime="2025-10" data-astro-cid-elint5e2>Oct 2025</time><span class="timeline-date-sep" data-astro-cid-elint5e2>&mdash;</span><span class="timeline-date-now" data-astro-cid-elint5e2>Now</span></div><div class="timeline-body" data-astro-cid-elint5e2><h3 class="timeline-role" data-astro-cid-elint5e2>Software Engineer</h3><p class="timeline-company" data-astro-cid-elint5e2>Arashi Vision (Insta360)</p><p class="timeline-desc" data-astro-cid-elint5e2>HarmonyOS application development and Android cloud storage service client.</p></div></div><div class="timeline-item" data-astro-cid-elint5e2><div class="timeline-date" data-astro-cid-elint5e2><time datetime="2020-04" data-astro-cid-elint5e2>Apr 2020</time><span class="timeline-date-sep" data-astro-cid-elint5e2>&mdash;</span><time datetime="2025-10" data-astro-cid-elint5e2>Oct 2025</time><span class="timeline-duration" data-astro-cid-elint5e2>5.5 yrs</span></div><div class="timeline-body" data-astro-cid-elint5e2><h3 class="timeline-role" data-astro-cid-elint5e2>Senior Software Engineer</h3><p class="timeline-company" data-astro-cid-elint5e2>Huawei</p><p class="timeline-desc" data-astro-cid-elint5e2>HarmonyOS Wallpaper Framework, ThemeEngine, AOSP View System, vPNF, and resource compilation pipeline maintenance.</p></div></div><div class="timeline-item" data-astro-cid-elint5e2><div class="timeline-date" data-astro-cid-elint5e2><time datetime="2019-10" data-astro-cid-elint5e2>Oct 2019</time><span class="timeline-date-sep" data-astro-cid-elint5e2>&mdash;</span><time datetime="2020-01" data-astro-cid-elint5e2>Jan 2020</time><span class="timeline-duration" data-astro-cid-elint5e2>4 mos</span></div><div class="timeline-body" data-astro-cid-elint5e2><h3 class="timeline-role" data-astro-cid-elint5e2>Performance Engineer Intern</h3><p class="timeline-company" data-astro-cid-elint5e2>Nvidia</p></div></div></div></section></div></div>
+</main><footer class="footer" data-astro-cid-jo6i4kqk><div class="footer-line" data-astro-cid-jo6i4kqk></div><p class="footer-text" data-astro-cid-jo6i4kqk>&copy; 2026 &mdash; Built with care</p></footer></div></body></html>

@@ -1,0 +1,103 @@
+---
+import ModeToggle from './ModeToggle';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header">
+  <nav class="nav" aria-label="Main navigation">
+    <a href="/" class="nav-logo">
+      <img
+        src="/logo_white.png"
+        alt="Home"
+        class="logo-img logo-online"
+        width="40"
+        height="40"
+      />
+      <img
+        src="/logo_black.png"
+        alt="Home"
+        class="logo-img logo-offline"
+        width="40"
+        height="40"
+      />
+    </a>
+    <div class="nav-links">
+      <a
+        href="/"
+        class="nav-link"
+        aria-current={currentPath === '/' ? 'page' : undefined}
+      >Home</a>
+      <a
+        href="/blog"
+        class="nav-link"
+        aria-current={currentPath.startsWith('/blog') ? 'page' : undefined}
+      >Blog</a>
+    </div>
+    <div class="nav-toggle">
+      <ModeToggle client:load />
+    </div>
+  </nav>
+</header>
+
+<style>
+  .header {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .logo-img {
+    display: none;
+    height: 40px;
+    width: auto;
+  }
+
+  html[data-mode="online"] .logo-online {
+    display: block;
+  }
+
+  html[data-mode="offline"] .logo-offline {
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text);
+    background-color: var(--color-accent-muted);
+  }
+
+  .nav-link[aria-current="page"] {
+    color: var(--color-accent);
+  }
+
+  .nav-toggle {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+</style>
