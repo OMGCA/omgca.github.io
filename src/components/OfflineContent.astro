@@ -4,13 +4,12 @@ import type { ImageMetadata } from 'astro';
 import PortfolioCard from './PortfolioCard.astro';
 
 // Glob-import portfolio images per subdirectory (preserves grouping)
-const globPattern = '*.{jpg,jpeg,JPG,JPEG,png,PNG,webp,WEBP,avif,AVIF}';
-
-const insta360Modules = import.meta.glob(`../assets/portfolio/insta360_hmos/${globPattern}`);
-const moodMatchModules = import.meta.glob(`../assets/portfolio/mood_match/${globPattern}`);
-const partialAodModules = import.meta.glob(`../assets/portfolio/partial_aod/${globPattern}`);
-const stickerModules = import.meta.glob(`../assets/portfolio/sticker/${globPattern}`);
-const selfAdaptModules = import.meta.glob(`../assets/portfolio/self_adapt_ui/${globPattern}`);
+// IMPORTANT: import.meta.glob requires static string literals — no template literals
+const insta360Modules = import.meta.glob('../assets/portfolio/insta360_hmos/*.{jpg,jpeg,JPG,JPEG,png,PNG,webp,WEBP,avif,AVIF}');
+const moodMatchModules = import.meta.glob('../assets/portfolio/mood_match/*.{jpg,jpeg,JPG,JPEG,png,PNG,webp,WEBP,avif,AVIF}');
+const partialAodModules = import.meta.glob('../assets/portfolio/partial_aod/*.{jpg,jpeg,JPG,JPEG,png,PNG,webp,WEBP,avif,AVIF}');
+const stickerModules = import.meta.glob('../assets/portfolio/sticker/*.{jpg,jpeg,JPG,JPEG,png,PNG,webp,WEBP,avif,AVIF}');
+const selfAdaptModules = import.meta.glob('../assets/portfolio/self_adapt_ui/*.{jpg,jpeg,JPG,JPEG,png,PNG,webp,WEBP,avif,AVIF}');
 
 async function resolveImages(
   modules: Record<string, () => Promise<{ default: ImageMetadata }>>
