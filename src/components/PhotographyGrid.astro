@@ -1,36 +1,57 @@
 ---
-import { readdirSync } from 'node:fs';
-import { extname, join } from 'node:path';
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 
-const photosDir = join(process.cwd(), 'public', 'photos');
-const imageExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+// Glob-import all photos from src/assets/photos/
+// Case-insensitive patterns: camera files use uppercase .JPG; Linux CI is case-sensitive
+const photoFiles = import.meta.glob(
+  '../assets/photos/*.{jpg,jpeg,JPG,JPEG,png,PNG,webp,WEBP,avif,AVIF}'
+);
 
-let photoFiles: string[] = [];
-try {
-  photoFiles = readdirSync(photosDir)
-    .filter(f => imageExtensions.has(extname(f).toLowerCase()))
-    .sort(() => Math.random() - 0.5);
-} catch {
-  photoFiles = [];
-}
+// Resolve all imports to get ImageMetadata objects
+const resolved = await Promise.all(Object.values(photoFiles).map(fn => fn()));
+let photoMetadata = resolved.map(r => (r as { default: ImageMetadata }).default);
 
-const photoCount = photoFiles.length;
+// Server-side shuffle for initial page load (client script re-shuffles DOM)
+photoMetadata = photoMetadata.sort(() => Math.random() - 0.5);
+const photoCount = photoMetadata.length;
+
+// Generate optimized thumbnails at build time
+// Grid layout: 3-col desktop (~290px per card), 2-col tablet (~350px), 1-col mobile
+// width: 400 covers 1x displays; srcset handles HiDPI and larger breakpoints
+// fit: 'cover' crops to 4:3 aspect ratio matching the CSS object-fit: cover
+const optimizedPhotos = photoCount > 0
+  ? await Promise.all(photoMetadata.map(img =>
+      getImage({
+        src: img,
+        width: 400,
+        widths: [300, 400, 600, 800],
+        height: 300,
+        format: 'webp',
+        fit: 'cover',
+      })
+    ))
+  : [];
 ---
 
 {photoCount === 0 ? (
   <div class="photo-empty surface">
-    <p>No photos yet. Add images to <code>public/photos/</code>.</p>
+    <p>No photos yet. Add images to <code>src/assets/photos/</code>.</p>
   </div>
 ) : (
   <div class="photo-grid" id="photo-grid">
-    {photoFiles.map(file => (
+    {optimizedPhotos.map(img => (
       <div class="photo-card surface">
         <img
-          src={`/photos/${file}`}
+          src={img.src}
+          srcset={img.srcSet.attribute}
+          sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
           alt=""
           loading="lazy"
           decoding="async"
           class="photo-img"
+          width={img.attributes.width}
+          height={img.attributes.height}
           onload="this.style.opacity='1'"
         />
       </div>

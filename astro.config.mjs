@@ -11,5 +11,9 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()]
+  },
+
+  image: {
+    // Sharp is auto-detected when installed — used by getImage() / <Image />
   }
 });
