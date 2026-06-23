@@ -188,8 +188,8 @@ const optimizedPhotos = photoCount > 0
 
   // Lightbox with FLIP animation
   const overlay = document.getElementById('lightbox-overlay');
+  const lightboxImg = document.getElementById('lightbox-img');
   const closeBtn = document.getElementById('lightbox-close');
-  let lightboxImg = document.getElementById('lightbox-img');
   let activeThumb = null;
 
   function openLightbox(src, thumbImg) {
@@ -210,27 +210,25 @@ const optimizedPhotos = photoCount > 0
 
     activeThumb = thumbImg;
 
-    // Create a fresh img element so the browser loads the new image from
-    // scratch, rendering progressively with no stale previous image
-    const newImg = document.createElement('img');
-    newImg.className = 'lightbox-img';
-    newImg.id = 'lightbox-img';
-    newImg.alt = '';
-    newImg.src = src;
-    newImg.style.transition = 'none';
-    newImg.style.transform = 'translate(' + (thumbCX - vpCX) + 'px, ' + (thumbCY - vpCY) + 'px) scale(' + sx + ', ' + sy + ')';
-    lightboxImg.replaceWith(newImg);
-    lightboxImg = newImg;
+    // Clear stale image (shows grey background) then load new one progressively.
+    // Setting src to empty string on a valid <img> does not trigger a broken-image
+    // icon in modern browsers — it simply clears the rendered content.
+    lightboxImg.removeAttribute('src');
+    lightboxImg.src = src;
+
+    // Snap to thumbnail position (no transition)
+    lightboxImg.style.transition = 'none';
+    lightboxImg.style.transform = 'translate(' + (thumbCX - vpCX) + 'px, ' + (thumbCY - vpCY) + 'px) scale(' + sx + ', ' + sy + ')';
 
     overlay.classList.add('open');
     overlay.style.opacity = '0';
 
     // Force reflow so the initial position is painted
-    newImg.offsetHeight;
+    lightboxImg.offsetHeight;
 
     // Animate to center
-    newImg.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
-    newImg.style.transform = 'translate(0, 0) scale(1, 1)';
+    lightboxImg.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+    lightboxImg.style.transform = 'translate(0, 0) scale(1, 1)';
     overlay.style.opacity = '1';
 
     document.body.style.overflow = 'hidden';
