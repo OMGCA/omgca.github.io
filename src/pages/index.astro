@@ -1,9 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import OnlineProfile from '../components/OnlineProfile.astro';
 import OfflineProfile from '../components/OfflineProfile.astro';
 import OnlineContent from '../components/OnlineContent.astro';
 import OfflineContent from '../components/OfflineContent.astro';
+import BlogCard from '../components/BlogCard.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const latestPost = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())[0];
 ---
 
 <BaseLayout title="Sebastian — Home">
@@ -13,6 +18,16 @@ import OfflineContent from '../components/OfflineContent.astro';
       <OnlineProfile />
     </div>
     <div class="content-section">
+      {latestPost && (
+        <section class="latest-blog">
+          <div class="section-header">
+            <h2>Latest Blog</h2>
+            <a href="/blog" class="section-link">All posts &rarr;</a>
+          </div>
+          <BlogCard post={latestPost} />
+        </section>
+      )}
+
       <OnlineContent />
     </div>
   </div>
@@ -28,3 +43,31 @@ import OfflineContent from '../components/OfflineContent.astro';
   </div>
 </BaseLayout>
 
+<style>
+  .latest-blog {
+    margin-bottom: 2.5rem;
+  }
+
+  .latest-blog .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .latest-blog .section-header h2 {
+    margin-bottom: 0;
+  }
+
+  .section-link {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .section-link:hover {
+    color: var(--color-accent);
+  }
+</style>
