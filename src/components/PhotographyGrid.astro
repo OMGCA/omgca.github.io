@@ -39,24 +39,34 @@ const optimizedPhotos = photoCount > 0
     <p>No photos yet. Add images to <code>src/assets/photos/</code>.</p>
   </div>
 ) : (
-  <div class="photo-grid" id="photo-grid">
-    {optimizedPhotos.map(img => (
-      <div class="photo-card surface">
-        <img
-          src={img.src}
-          srcset={img.srcSet.attribute}
-          sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
-          alt=""
-          loading="lazy"
-          decoding="async"
-          class="photo-img"
-          width={img.attributes.width}
-          height={img.attributes.height}
-          onload="this.style.opacity='1'"
-        />
-      </div>
-    ))}
-  </div>
+  <>
+    <div class="photo-grid" id="photo-grid">
+      {optimizedPhotos.map((img, i) => (
+        <div class="photo-card surface">
+          <img
+            src={img.src}
+            srcset={img.srcSet.attribute}
+            sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            class="photo-img"
+            width={img.attributes.width}
+            height={img.attributes.height}
+            onload="this.style.opacity='1'"
+            data-full-src={photoMetadata[i]?.src}
+          />
+        </div>
+      ))}
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox-overlay">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <img class="lightbox-img" id="lightbox-img" alt="" />
+    </div>
+  </>
 )}
 
 <style>
@@ -71,11 +81,12 @@ const optimizedPhotos = photoCount > 0
     aspect-ratio: 4 / 3;
     padding: 0;
     cursor: pointer;
-    transition: box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .photo-card:hover {
-    box-shadow: 0 4px 24px var(--color-shadow);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px var(--color-shadow);
   }
 
   .photo-img {
@@ -97,6 +108,60 @@ const optimizedPhotos = photoCount > 0
     font-size: 0.9375rem;
   }
 
+  /* Lightbox */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .lightbox-overlay.open {
+    display: flex;
+    opacity: 1;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    transition: background 0.2s ease;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+
+  .lightbox-overlay.open .lightbox-img {
+    transform: scale(1);
+  }
+
   @media (max-width: 768px) {
     .photo-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -106,6 +171,11 @@ const optimizedPhotos = photoCount > 0
   @media (max-width: 480px) {
     .photo-grid {
       grid-template-columns: 1fr;
+    }
+
+    .lightbox-img {
+      max-width: 95vw;
+      max-height: 85vh;
     }
   }
 </style>
@@ -119,4 +189,40 @@ const optimizedPhotos = photoCount > 0
       grid.appendChild(cards[j]);
     }
   }
+
+  // Lightbox
+  const overlay = document.getElementById('lightbox-overlay');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.getElementById('lightbox-close');
+
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Delegate click on grid to handle all photo cards
+  const photoGrid = document.getElementById('photo-grid');
+  if (photoGrid) {
+    photoGrid.addEventListener('click', (e) => {
+      const img = e.target.closest('.photo-card')?.querySelector('img');
+      if (img) {
+        const fullSrc = img.getAttribute('data-full-src');
+        if (fullSrc) openLightbox(fullSrc);
+      }
+    });
+  }
+
+  closeBtn?.addEventListener('click', closeLightbox);
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay?.classList.contains('open')) closeLightbox();
+  });
 </script>
