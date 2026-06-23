@@ -39,6 +39,12 @@ The site has two "modes" controlled by a `data-mode` attribute on `<html>`: `"on
 ### Key patterns
 
 - **Build-time image optimization**: `PhotographyGrid.astro` and `PortfolioCard.astro` use Astro's `getImage()` to generate WebP thumbnails with responsive srcsets at build time. Portfolio cards also generate tiny (60px) blur-backdrop images for a CSS `filter: blur(20px)` background effect.
+- **Photography lightbox** (`PhotographyGrid.astro`): Clicking a grid photo opens a full-size view with:
+  - **FLIP animation** — the image expands from its thumbnail position to center (and shrinks back on close) using JS-calculated `transform` with a `cubic-bezier` transition. The close animation reverses back to the thumbnail only if the thumbnail is still in the viewport.
+  - **Progressive loading** — images render top-to-bottom as data arrives (no opacity-based hiding). A fresh `src` is set via `removeAttribute('src')` then reassignment to clear the previous image without triggering a broken-image icon.
+  - **Blur-up reveal** — the image starts with `filter: blur(20px)` and transitions to `blur(0)` on `onload` (0.5s ease). The `filter` transition must be included in the inline `style.transition` strings set by JS, otherwise the CSS transition rule is overridden.
+  - **Constrained sizing** — `max-width: min(82vw, 900px)` / `max-height: min(82vh, 900px)` with a `min-width: 300px; min-height: 200px` grey (`#2a2a2e`) placeholder that shows before the image arrives.
+  - **18-photo cap** — randomly selects 18 photos at build time via `.sort(() => Math.random() - 0.5).slice(0, 18)`, then re-shuffles them client-side on page load.
 - **Vanilla JS carousel**: `PortfolioCard.astro` implements its own touch/mouse-drag carousel — no third-party library.
 - **Page routing**: `src/pages/index.astro` (homepage), `src/pages/blog/index.astro` (listing with category filters), `src/pages/blog/[...slug].astro` (individual post with static path generation via `getStaticPaths()`).
 - **Layout**: `BaseLayout.astro` provides the shell (`<html>`, `<head>`, Google Fonts via CDN, header, footer). Google Fonts: DM Sans (body), Google Sans (headings).
