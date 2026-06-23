@@ -155,7 +155,12 @@ const optimizedPhotos = photoCount > 0
     border-radius: 8px;
     background: #2a2a2e;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 80px rgba(0, 0, 0, 0.55);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: blur(20px);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease;
+  }
+
+  .lightbox-img.loaded {
+    filter: blur(0);
   }
 
   @media (max-width: 768px) {
@@ -210,10 +215,10 @@ const optimizedPhotos = photoCount > 0
 
     activeThumb = thumbImg;
 
-    // Clear stale image (shows grey background) then load new one progressively.
-    // Setting src to empty string on a valid <img> does not trigger a broken-image
-    // icon in modern browsers — it simply clears the rendered content.
+    // Clear stale image (shows grey background) then load new one progressively
+    lightboxImg.classList.remove('loaded');
     lightboxImg.removeAttribute('src');
+    lightboxImg.onload = function () { lightboxImg.classList.add('loaded'); };
     lightboxImg.src = src;
 
     // Snap to thumbnail position (no transition)
