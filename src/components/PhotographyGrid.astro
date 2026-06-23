@@ -64,9 +64,7 @@ const optimizedPhotos = photoCount > 0
       <button class="lightbox-close" id="lightbox-close" aria-label="Close">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
-      <div class="lightbox-img-wrap" id="lightbox-img-wrap">
-        <img class="lightbox-img" id="lightbox-img" alt="" />
-      </div>
+      <img class="lightbox-img" id="lightbox-img" alt="" />
     </div>
   </>
 )}
@@ -148,21 +146,15 @@ const optimizedPhotos = photoCount > 0
     background: rgba(255, 255, 255, 0.2);
   }
 
-  .lightbox-img-wrap {
+  .lightbox-img {
+    aspect-ratio: 4 / 3;
     max-width: min(82vw, 900px);
     max-height: min(82vh, 900px);
+    object-fit: contain;
     border-radius: 8px;
     background: #2a2a2e;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 80px rgba(0, 0, 0, 0.55);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .lightbox-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    border-radius: 8px;
   }
 
   @media (max-width: 768px) {
@@ -176,7 +168,7 @@ const optimizedPhotos = photoCount > 0
       grid-template-columns: 1fr;
     }
 
-    .lightbox-img-wrap {
+    .lightbox-img {
       max-width: min(92vw, 600px);
       max-height: min(85vh, 600px);
     }
@@ -195,9 +187,8 @@ const optimizedPhotos = photoCount > 0
 
   // Lightbox with FLIP animation
   const overlay = document.getElementById('lightbox-overlay');
-  const lightboxWrap = document.getElementById('lightbox-img-wrap');
-  const lightboxImg = document.getElementById('lightbox-img');
   const closeBtn = document.getElementById('lightbox-close');
+  let lightboxImg = document.getElementById('lightbox-img');
   let activeThumb = null;
 
   function openLightbox(src, thumbImg) {
@@ -218,25 +209,24 @@ const optimizedPhotos = photoCount > 0
 
     activeThumb = thumbImg;
 
-    // Clear stale previous image then load new one progressively
-    lightboxImg.src = '';
-    requestAnimationFrame(() => {
-      lightboxImg.src = src;
-    });
-
-    // Snap wrap to thumbnail position (no transition)
-    lightboxWrap.style.transition = 'none';
-    lightboxWrap.style.transform = `translate(${thumbCX - vpCX}px, ${thumbCY - vpCY}px) scale(${sx}, ${sy})`;
+    // Swap img element so the browser loads the new image from scratch,
+    // rendering progressively without any stale previous image
+    const newImg = lightboxImg.cloneNode();
+    newImg.src = src;
+    newImg.style.transition = 'none';
+    newImg.style.transform = 'translate(' + (thumbCX - vpCX) + 'px, ' + (thumbCY - vpCY) + 'px) scale(' + sx + ', ' + sy + ')';
+    lightboxImg.replaceWith(newImg);
+    lightboxImg = newImg;
 
     overlay.classList.add('open');
     overlay.style.opacity = '0';
 
     // Force reflow so the initial position is painted
-    lightboxWrap.offsetHeight;
+    newImg.offsetHeight;
 
-    // Animate wrap to center
-    lightboxWrap.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
-    lightboxWrap.style.transform = 'translate(0, 0) scale(1, 1)';
+    // Animate to center
+    newImg.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+    newImg.style.transform = 'translate(0, 0) scale(1, 1)';
     overlay.style.opacity = '1';
 
     document.body.style.overflow = 'hidden';
@@ -260,10 +250,10 @@ const optimizedPhotos = photoCount > 0
         const sx = Math.min(thumbRect.width / finalMaxW, 1);
         const sy = Math.min(thumbRect.height / finalMaxH, 1);
 
-        lightboxWrap.style.transform = `translate(${thumbCX - vpCX}px, ${thumbCY - vpCY}px) scale(${sx}, ${sy})`;
+        lightboxImg.style.transform = 'translate(' + (thumbCX - vpCX) + 'px, ' + (thumbCY - vpCY) + 'px) scale(' + sx + ', ' + sy + ')';
         overlay.style.opacity = '0';
 
-        setTimeout(() => finishClose(), 350);
+        setTimeout(function () { finishClose(); }, 350);
         return;
       }
     }
@@ -273,8 +263,8 @@ const optimizedPhotos = photoCount > 0
   function finishClose() {
     overlay.classList.remove('open');
     overlay.style.opacity = '';
-    lightboxWrap.style.transform = '';
-    lightboxWrap.style.transition = '';
+    lightboxImg.style.transform = '';
+    lightboxImg.style.transition = '';
     activeThumb = null;
     document.body.style.overflow = '';
   }
