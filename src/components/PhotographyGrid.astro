@@ -12,8 +12,8 @@ const photoFiles = import.meta.glob(
 const resolved = await Promise.all(Object.values(photoFiles).map(fn => fn()));
 let photoMetadata = resolved.map(r => (r as { default: ImageMetadata }).default);
 
-// Server-side shuffle for initial page load (client script re-shuffles DOM)
-photoMetadata = photoMetadata.sort(() => Math.random() - 0.5);
+// Server-side shuffle + cap at 18 for initial page load (client script re-shuffles DOM)
+photoMetadata = photoMetadata.sort(() => Math.random() - 0.5).slice(0, 18);
 const photoCount = photoMetadata.length;
 
 // Generate optimized thumbnails at build time
