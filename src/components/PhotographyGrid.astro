@@ -231,8 +231,8 @@ const optimizedPhotos = photoCount > 0
     // Force reflow so the initial position is painted
     lightboxImg.offsetHeight;
 
-    // Animate to center
-    lightboxImg.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+    // Animate to center (include filter so blur→sharp transition works once loaded)
+    lightboxImg.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease';
     lightboxImg.style.transform = 'translate(0, 0) scale(1, 1)';
     overlay.style.opacity = '1';
 
@@ -257,6 +257,8 @@ const optimizedPhotos = photoCount > 0
         const sx = Math.min(thumbRect.width / finalMaxW, 1);
         const sy = Math.min(thumbRect.height / finalMaxH, 1);
 
+        // Match the open transition so close also animates smoothly
+        lightboxImg.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), filter 0.5s ease';
         lightboxImg.style.transform = 'translate(' + (thumbCX - vpCX) + 'px, ' + (thumbCY - vpCY) + 'px) scale(' + sx + ', ' + sy + ')';
         overlay.style.opacity = '0';
 
@@ -272,6 +274,8 @@ const optimizedPhotos = photoCount > 0
     overlay.style.opacity = '';
     lightboxImg.style.transform = '';
     lightboxImg.style.transition = '';
+    lightboxImg.classList.remove('loaded');
+    lightboxImg.onload = null;
     activeThumb = null;
     document.body.style.overflow = '';
   }
