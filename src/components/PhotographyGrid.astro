@@ -210,9 +210,12 @@ const optimizedPhotos = photoCount > 0
 
     activeThumb = thumbImg;
 
-    // Swap img element so the browser loads the new image from scratch,
-    // rendering progressively without any stale previous image
-    const newImg = lightboxImg.cloneNode();
+    // Create a fresh img element so the browser loads the new image from
+    // scratch, rendering progressively with no stale previous image
+    const newImg = document.createElement('img');
+    newImg.className = 'lightbox-img';
+    newImg.id = 'lightbox-img';
+    newImg.alt = '';
     newImg.src = src;
     newImg.style.transition = 'none';
     newImg.style.transform = 'translate(' + (thumbCX - vpCX) + 'px, ' + (thumbCY - vpCY) + 'px) scale(' + sx + ', ' + sy + ')';
