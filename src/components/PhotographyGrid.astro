@@ -147,11 +147,11 @@ const optimizedPhotos = photoCount > 0
   }
 
   .lightbox-img {
-    max-width: min(75vw, 700px);
-    max-height: min(75vh, 700px);
+    max-width: min(82vw, 900px);
+    max-height: min(82vh, 900px);
     object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 80px rgba(0, 0, 0, 0.55);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -167,8 +167,8 @@ const optimizedPhotos = photoCount > 0
     }
 
     .lightbox-img {
-      max-width: min(90vw, 500px);
-      max-height: min(80vh, 500px);
+      max-width: min(92vw, 600px);
+      max-height: min(85vh, 600px);
     }
   }
 </style>
@@ -200,8 +200,8 @@ const optimizedPhotos = photoCount > 0
     const thumbCY = thumbRect.top + thumbRect.height / 2;
 
     // Approximate final rendered size within max constraints
-    const finalMaxW = Math.min(vpW * 0.75, 700);
-    const finalMaxH = Math.min(vpH * 0.75, 700);
+    const finalMaxW = Math.min(vpW * 0.82, 900);
+    const finalMaxH = Math.min(vpH * 0.82, 900);
     const sx = Math.min(thumbRect.width / finalMaxW, 1);
     const sy = Math.min(thumbRect.height / finalMaxH, 1);
 
